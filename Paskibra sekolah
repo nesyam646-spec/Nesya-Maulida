@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paskibra SMKN 11 Pandeglang</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* ================= NAVBAR ================= */
+
+header {
+    width: 100%;
+    height: 70px;
+    background: #b40000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+}
+
+nav {
+    max-width: 1200px;
+    height: 70px;
+    margin: auto;
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+    color: #ffdede;
+}
+
+/* ================= HALAMAN ================= */
+
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 110px 25px 70px;
+    animation: fadeIn 0.4s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= BERANDA ================= */
+
+#beranda {
+    padding: 70px 0 0;
+}
+
+.dashboard {
+    min-height: calc(100vh - 70px);
+
+    background:
+        linear-gradient(
+            to bottom,
+            #c40000 0%,
+            #c40000 50%,
+            #ffffff 50%,
+            #ffffff 100%
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.dashboard-box {
+    width: 850px;
+    max-width: 100%;
+    background: rgba(255,255,255,0.96);
+    padding: 55px 35px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+}
+
+.dashboard-box h1 {
+    color: #b40000;
+    font-size: 50px;
+    margin-bottom: 12px;
+}
+
+.dashboard-box h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.dashboard-box p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.btn {
+    border: none;
+    background: #b40000;
+    color: white;
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #850000;
+    transform: translateY(-2px);
+}
+
+/* ================= JUDUL ================= */
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title h1 {
+    color: #b40000;
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #666;
+}
+
+/* ================= KEGIATAN ================= */
+
+.cards {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 15px;
+    text-align: center;
+    border-top: 5px solid #b40000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+}
+
+.icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    color: #b40000;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ================= PRESTASI ================= */
+
+.achievements {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.achievement {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 6px solid #b40000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.medal {
+    font-size: 40px;
+}
+
+.achievement h2 {
+    color: #b40000;
+    margin: 15px 0 10px;
+}
+
+.achievement p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ================= SELEKSI ================= */
+
+.selection-container {
+    max-width: 1050px;
+    margin: auto;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.step {
+    background: white;
+    text-align: center;
+    padding: 30px 18px;
+    border-radius: 15px;
+    border-top: 5px solid #b40000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.number {
+    width: 55px;
+    height: 55px;
+    margin: auto;
+    border-radius: 50%;
+    background: #b40000;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.step h2 {
+    color: #b40000;
+    margin: 15px 0 10px;
+}
+
+.step p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ================= GALERI ================= */
+
+.gallery-empty {
+    max-width: 900px;
+    min-height: 400px;
+    margin: auto;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px dashed #d5d5d5;
+}
+
+.gallery-empty p {
+    color: #999;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #780000;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+footer p {
+    margin: 7px;
+}
+
+.creator {
+    font-weight: bold;
+}
+
+/* ================= RESPONSIVE ================= */
+
+.menu-btn {
+    display: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        background: #b40000;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 20px;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+    .nav-links.show {
+        left: 0;
+    }
+
+    .nav-links button {
+        padding: 12px;
+        width: 100%;
+    }
+
+    .cards,
+    .achievements {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .dashboard-box h1 {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .logo {
+        font-size: 13px;
+    }
+
+    .cards,
+    .achievements,
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-box {
+        padding: 40px 20px;
+    }
+
+    .dashboard-box h1 {
+        font-size: 32px;
+    }
+
+    .dashboard-box h2 {
+        font-size: 21px;
+    }
+
+    .section-title h1 {
+        font-size: 30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+<nav>
+
+    <div class="logo">
+        PASKIBRA SMKN 11 PANDEGLANG
+    </div>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+
+        <li>
+            <button onclick="showPage('beranda', this)" class="active">
+                Beranda
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('kegiatan', this)">
+                Kegiatan
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('prestasi', this)">
+                Prestasi
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('seleksi', this)">
+                Seleksi
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('galeri', this)">
+                Galeri
+            </button>
+        </li>
+
+    </ul>
+
+</nav>
+</header>
+
+
+<!-- ================= BERANDA ================= -->
+
+<section id="beranda" class="page active">
+
+    <div class="dashboard">
+
+        <div class="dashboard-box">
+
+            <h1>PASKIBRA</h1>
+
+            <h2>SMKN 11 PANDEGLANG</h2>
+
+            <p>
+                Selamat datang di website Paskibra
+                SMKN 11 Pandeglang.
+                Website ini menyediakan informasi mengenai
+                kegiatan, prestasi, seleksi, dan galeri Paskibra.
+            </p>
+
+            <button
+                class="btn"
+                onclick="showPage('kegiatan')">
+                Lihat Kegiatan
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= KEGIATAN ================= -->
+
+<section id="kegiatan" class="page">
+
+    <div class="section-title">
+
+        <h1>Kegiatan</h1>
+
+        <p>
+            Kegiatan Paskibra SMKN 11 Pandeglang
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">🫡</div>
+
+            <h2>Latihan Rutin</h2>
+
+            <p>
+                Latihan rutin untuk meningkatkan
+                kedisiplinan, kekompakan, ketahanan,
+                dan kemampuan baris-berbaris.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🇮🇩</div>
+
+            <h2>Upacara Bendera</h2>
+
+            <p>
+                Berpartisipasi dalam pelaksanaan
+                upacara bendera di lingkungan sekolah.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🏕️</div>
+
+            <h2>Kegiatan Lapangan</h2>
+
+            <p>
+                Kegiatan lapangan untuk melatih
+                kepemimpinan, kemandirian,
+                dan kerja sama antaranggota.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PRESTASI ================= -->
+
+<section id="prestasi" class="page">
+
+    <div class="section-title">
+
+        <h1>Prestasi</h1>
+
+        <p>
+            Prestasi Paskibra SMKN 11 Pandeglang
+        </p>
+
+    </div>
+
+    <div class="achievements">
+
+        <div class="achievement">
+
+            <div class="medal">🏆</div>
+
+            <h2>Prestasi PBB</h2>
+
+            <p>
+                Tempat untuk menampilkan prestasi
+                Peraturan Baris-Berbaris.
+            </p>
+
+        </div>
+
+
+        <div class="achievement">
+
+            <div class="medal">🥇</div>
+
+            <h2>Prestasi LKBB</h2>
+
+            <p>
+                Tempat untuk menampilkan prestasi
+                Lomba Ketangkasan Baris-Berbaris.
+            </p>
+
+        </div>
+
+
+        <div class="achievement">
+
+            <div class="medal">🎖️</div>
+
+            <h2>Prestasi Lainnya</h2>
+
+            <p>
+                Tempat untuk menambahkan berbagai
+                prestasi yang telah diraih.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SELEKSI ================= -->
+
+<section id="seleksi" class="page">
+
+    <div class="section-title">
+
+        <h1>Seleksi Paskibra</h1>
+
+        <p>
+            Tahapan seleksi calon anggota Paskibra
+        </p>
+
+    </div>
+
+    <div class="selection-container">
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="number">1</div>
+
+                <h2>Pendaftaran</h2>
+
+                <p>
+                    Melakukan pendaftaran sesuai
+                    jadwal yang telah ditentukan.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="number">2</div>
+
+                <h2>Seleksi</h2>
+
+                <p>
+                    Mengikuti proses seleksi dan
+                    penilaian kemampuan calon anggota.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="number">3</div>
+
+                <h2>Pelatihan</h2>
+
+                <p>
+                    Mengikuti latihan dan pembinaan
+                    untuk mempersiapkan anggota.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="number">4</div>
+
+                <h2>Diterima</h2>
+
+                <p>
+                    Menjadi bagian dari keluarga besar
+                    Paskibra SMKN 11 Pandeglang.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GALERI ================= -->
+
+<section id="galeri" class="page">
+
+    <div class="section-title">
+
+        <h1>Galeri</h1>
+
+        <p>
+            Dokumentasi Paskibra SMKN 11 Pandeglang
+        </p>
+
+    </div>
+
+    <!-- GALERI DIKOSONGKAN -->
+
+    <div class="gallery-empty">
+
+        <p>
+            Galeri belum memiliki dokumentasi.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        <strong>PASKIBRA SMKN 11 PANDEGLANG</strong>
+    </p>
+
+    <p class="creator">
+        Dibuat oleh : Nesya Maulida
+    </p>
+
+    <p>
+        © 2026 All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+/* ================= PINDAH HALAMAN ================= */
+
+function showPage(pageId, button) {
+
+    // Sembunyikan semua halaman
+    const pages = document.querySelectorAll(".page");
+
+    pages.forEach(page => {
+        page.classList.remove("active");
+    });
+
+    // Tampilkan halaman yang dipilih
+    document.getElementById(pageId).classList.add("active");
+
+    // Hapus active dari semua tombol
+    const buttons = document.querySelectorAll(".nav-links button");
+
+    buttons.forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    // Jika tombol tersedia, aktifkan
+    if (button) {
+        button.classList.add("active");
+    }
+
+    // Tutup menu HP
+    document.getElementById("navLinks").classList.remove("show");
+
+    // Kembali ke bagian paling atas
+    window.scrollTo(0, 0);
+}
+
+
+/* ================= MENU HP ================= */
+
+function toggleMenu() {
+
+    document
+        .getElementById("navLinks")
+        .classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>
